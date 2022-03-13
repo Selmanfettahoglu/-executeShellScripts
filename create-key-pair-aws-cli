@@ -1,0 +1,8 @@
+PATH="$PATH:/usr/local/bin"
+CFN_KEYPAIR="my-new-key.pem"
+AWS_REGION="us-east-1"
+aws ec2 create-key-pair --region ${AWS_REGION} --key-name ${CFN_KEYPAIR} --query "KeyMaterial" --output text > ${CFN_KEYPAIR}
+chmod 400 ${CFN_KEYPAIR}
+
+#Bu script ile jenkinsin execute kismindan key.pem dosyasi olusturuyoruz.
+# Bu dosyayi cd /var/lib/jenkins/workspace e kaydediyor. Bu directory den jenkins veya ansible nu dosyayi kullanarak baglanti saglayabilir.

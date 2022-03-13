@@ -1,0 +1,10 @@
+PATH="$PATH:/usr/local/bin"
+APP_NAME="car-rental"
+APP_STACK_NAME="my-$APP_NAME-App-${BUILD_NUMBER}"
+CFN_KEYPAIR="my-newest-key.pem"
+CFN_TEMPLATE="./docker-swarm-infrastructure-cfn-template.yml"
+AWS_REGION="us-east-1"
+aws cloudformation create-stack --region ${AWS_REGION} --stack-name ${APP_STACK_NAME} --capabilities CAPABILITY_IAM --template-body file://${CFN_TEMPLATE} --parameters ParameterKey=KeyPairName,ParameterValue=${CFN_KEYPAIR}
+
+
+#Bu script githubdan dosyayi cekerek Cloud formation da prosesi baslatmaya yariyor.
